@@ -63,8 +63,23 @@ These maps were crafted by ingesting IP Geolocation databases into Sentinel's wa
 
 # Metric Comparison: Pre and Post Security Enhancements
 
+## Pre-Enhancement State :
+| **Event type**  | **Count** |
+| ------------- | ------------- |
+Security Events (Windows VMs) |	127457
+Syslog (Linux VMs) |	1879
+SecurityAlert (Microsoft Defender for Cloud) |	3
+SecurityIncident (Sentinel Incidents) |	181
+NSG Inbound Malicious Flows Allowed |	2713
 
-
+## Post-Enhancement State :
+| **Event type**  | **Count** |
+| ------------- | ------------- |
+Security Events (Windows VMs) |	783
+Syslog (Linux VMs) |	23
+SecurityAlert (Microsoft Defender for Cloud) |	0
+SecurityIncident (Sentinel Incidents) |	0
+NSG Inbound Malicious Flows Allowed |	0
 
 
 
