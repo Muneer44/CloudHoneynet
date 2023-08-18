@@ -7,7 +7,7 @@ In this project, I designed and implemented an Azure Cloud Honeynet environment 
 
 ---
 
-## Methodology 
+# Methodology 
 - <ins>**Azure Infrastructure Setup:**</ins> Deployed an Azure environment consisting of virtual machines, SQL Server, Azure Active Directory, storage accounts, Key Vault, and more.
   
 - <ins>**SIEM Integration with Azure Sentinel:**</ins> Leveraged Sentinel (SIEM) to monitor and analyze the captured data from various sources and respond to the incidents, all within a central hub.
@@ -87,8 +87,8 @@ NSG Inbound Malicious Flows Allowed |	0
 - The Security Events (783) and Syslog (23) counts are identified as **false positives** originating from internal systems like (NT-Authority).
 
 ---  
-
-# Walkthrough
+<details>
+<summary><h1>Highlevel Walkthrough</h1></summary>
 
 ## Azure Ecosystem Utilized:
 
@@ -106,7 +106,7 @@ NSG Inbound Malicious Flows Allowed |	0
 
 ---  
 
-## Phase 1 : Deployment 
+# Phase 1 : Deployment 
 - Create Windows VM
   - Instal SQL server and SQL Server Management Studio
   - Enable logs from SQL Server to be ingested to Win Event Viewer -[[Ref](https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/write-sql-server-audit-events-to-the-security-log?view=sql-server-ver16)]
@@ -117,8 +117,10 @@ NSG Inbound Malicious Flows Allowed |	0
 ![VMs](https://github.com/Muneer44/CloudHoneynet/assets/117259069/c4959815-4dbd-4777-86ee-6b83cc3a20c6)
 ![image](https://github.com/Muneer44/CloudHoneynet/assets/117259069/3faa39cd-7a04-4114-9b16-432ebe40cfa3)
 
-## Phase 2 : Logging and Monitoring
-### Log collection 
+---
+
+# Phase 2 : Setup Logging and Monitoring
+## Log collection 
 - Create Storage account
 - Create Log Analytics Workspace (LAW)
 - Enable MS Defender for Cloud
@@ -130,7 +132,9 @@ NSG Inbound Malicious Flows Allowed |	0
 - Setup Azure Subscription level logging (Azure Activity logs)
 - Setup Azure Resource level logging. (Azure Resource Manipulation logs)
 
-### MS Sentinel (SIEM) Configuration  
+---
+
+## MS Sentinel (SIEM) Configuration  
 
 ![MS SIEM](https://github.com/Muneer44/CloudHoneynet/assets/117259069/c72ea948-ee55-440d-b6c7-21a8171bab92)
 
@@ -145,20 +149,33 @@ NSG Inbound Malicious Flows Allowed |	0
 
 - Create Workbooks to generate [MAPs](#visualizing-attacks-mapping-the-source-of-attacks)
 
-### Analytics, Alerts and Incident Generation
+---
+
+## Analytics, Alerts and Incident Generation
 - Create MS Sentinel Analytics (Alert Rules)
 
   ![Analytics](https://github.com/Muneer44/CloudHoneynet/assets/117259069/dc6c03b6-f93e-4b52-a41f-be8cab6dbf7b)
-  
-### Simulate Attack attempts
- ### Attack Scripts
- ### KQL Query Cheat Sheet
 
+---
+ 
+## Simulate Attack Attempts: Trigger Alerts
+ ### Powershell Scripts
+ - [AAD_Brute_Force_Simulator]()
+ - [SQL-Brute-Force-Simulator]()
+ - [EICAR-Malware-Generator]()
+   > Note: It's not a malicious malware. EICAR is a test file used to check antivirus softwares. [Read more](https://www.eicar.org/download-anti-malware-testfile)
 
+ ### KQL Query Cheat Sheet 
+ - [Windows Security Event Log]()
+ - [Linux Syslog]()
+ - [Azure Active Directory]()
+ - [Azure Storage Account]()
+ - [Azure Key Vault]()
+ - [Network Security Groups]()
 
+---
 
-
-### Incident Response  
+## Incident Response  
 ![NIST IR](https://github.com/Muneer44/CloudHoneynet/assets/117259069/b67747ff-89db-47f7-84e2-384758054727)  
 
 > Incidents occured (Alerts Triggered)
@@ -170,8 +187,9 @@ NSG Inbound Malicious Flows Allowed |	0
 ![image](https://github.com/Muneer44/CloudHoneynet/assets/117259069/2b71eaea-9697-4801-b3fb-603e878b1305)
 ![Investigation 2](https://github.com/Muneer44/CloudHoneynet/assets/117259069/a5ae2674-b233-4a4e-b415-0cef77011861)
 
+---
 
-### Security Enhancements
+## Security Enhancements
 - Limit Resources public exposure [IMG](#architecture-after-implementation-of-security-measures)
   
   -Disable public access
@@ -182,7 +200,10 @@ NSG Inbound Malicious Flows Allowed |	0
 - Deploy NSG on subnet
 - Fulfill *NIST 800-53 R5 - Boundary Protection*
 
-  
+---
+
+
+</details>
 
 
 
