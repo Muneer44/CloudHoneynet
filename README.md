@@ -29,7 +29,7 @@ In this project, I designed and implemented an Azure Cloud Honeynet environment 
 <img src="https://github.com/Muneer44/CloudHoneynet/assets/117259069/6ece485f-2c8a-4cb5-8c62-346fb71dacff" alt = "Initial Architecture diagram" width="480" height="465">  
 
   
-> Initially, resources were intentionally set up for public exposure to attract potential threat actors and stimulate malicious activity. This deployment involved VMs with open Network Security Groups (NSGs) and built-in firewalls, allowing unrestricted access from any source.  In addition, resources like key vaults and storage accounts were also publicly accessible, lacking appropriate restrictions or private endpoint security controls.
+> Initially, resources were intentionally set up for public exposure to attract potential threat actors and stimulate malicious activity. This deployment involved VMs with open Network Security Groups (NSGs) and disabled built-in firewalls, allowing unrestricted access from any source.  In addition, resources like key vaults and storage accounts were also publicly accessible, lacking appropriate restrictions or private endpoint security controls.
 
 ---  
 
@@ -85,10 +85,10 @@ NSG Inbound Malicious Flows Allowed |	0
 
 - The comparison of metrics between the environment's pre and post security enhancements over a 24-hour period demonstrates the effectiveness of the implemented security controls, resulting in zero incidents Post Security Enhancement.
 - The Security Events (783) and Syslog (23) counts are identified as **false positives** originating from internal systems like (NT-Authority).
-
+- Note: The absence of active users on these systems reduces threat visibility. Active users could probably attract more threats.
 ---  
 <details>
-<summary><h1>Highlevel Walkthrough</h1></summary>
+<summary><h1>🌟 Comprehensive Walkthrough</h1> </summary>
 
 ## Azure Ecosystem Utilized:
 
@@ -106,21 +106,21 @@ NSG Inbound Malicious Flows Allowed |	0
 
 ---  
 
-# Phase 1 : Deployment 
+# Phase 1 : Initial Setup 
 - Create Windows VM
   - Instal SQL server and SQL Server Management Studio
-  - Enable logs from SQL Server to be ingested to Win Event Viewer -[[Ref](https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/write-sql-server-audit-events-to-the-security-log?view=sql-server-ver16)]
+  - Enable logs from SQL Server to be ingested to Win Event Viewer - [[Reference](https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/write-sql-server-audit-events-to-the-security-log?view=sql-server-ver16)]
 - Create Linux VM
-- Create Attacker (Win) VM
-- Apply open Network Security Groups (NSG) configuration
+- Create Attacker Windows VM
+- Create OPEN (insecure) Network Security Group (NSG) entries
   
 ![VMs](https://github.com/Muneer44/CloudHoneynet/assets/117259069/c4959815-4dbd-4777-86ee-6b83cc3a20c6)
 ![image](https://github.com/Muneer44/CloudHoneynet/assets/117259069/3faa39cd-7a04-4114-9b16-432ebe40cfa3)
 
 ---
 
-# Phase 2 : Setup Logging and Monitoring
-## Log collection 
+# Phase 2 : Setup Logging and Monitoring 
+## Log Collection 
 - Create Storage account
 - Create Log Analytics Workspace (LAW)
 - Enable MS Defender for Cloud
@@ -128,16 +128,15 @@ NSG Inbound Malicious Flows Allowed |	0
 - Create and configure Data Collection Rule for Win and Linux VMs
 - Create another custom rule for Win Firewall and Defender Logs
 - Install Log Agents on VMs
-- Setup Azure Tenant level logging (Azure Active Directory logs)
+- Setup Azure Tenant-level logging (Azure Active Directory logs)
 - Setup Azure Subscription level logging (Azure Activity logs)
-- Setup Azure Resource level logging. (Azure Resource Manipulation logs)
+- Setup Azure Resource-level logging. (Azure Resource Manipulation logs)
 
----
-
-## MS Sentinel (SIEM) Configuration  
+## Microsoft Sentinel (SIEM) for Monitoring, Alerting and Analysis     
 
 ![MS SIEM](https://github.com/Muneer44/CloudHoneynet/assets/117259069/c72ea948-ee55-440d-b6c7-21a8171bab92)
 
+## Setup SIEM :
 - Download Geo-IP Databases - [[Ref](https://github.com/AndiDittrich/GeoIP-Country-Lists)]
 - Create Container and upload Geo-Ip Databases
   
@@ -147,18 +146,15 @@ NSG Inbound Malicious Flows Allowed |	0
   
   ![Watchlists](https://github.com/Muneer44/CloudHoneynet/assets/117259069/63923683-f613-47fe-a335-9167750c1c9e)  
 
-- Create Workbooks to generate [MAPs](#visualizing-attacks-mapping-the-source-of-attacks)
+- Create Workbooks to generate [Maps](#visualizing-attacks-mapping-the-source-of-attacks)
 
----
-
-## Analytics, Alerts and Incident Generation
 - Create MS Sentinel Analytics (Alert Rules)
 
   ![Analytics](https://github.com/Muneer44/CloudHoneynet/assets/117259069/dc6c03b6-f93e-4b52-a41f-be8cab6dbf7b)
 
 ---
  
-## Simulate Attack Attempts: Trigger Alerts
+# Phase 3 : Simulate Attacks and Examine Logs
  ### Powershell Scripts
  - [AAD_Brute_Force_Simulator]()
  - [SQL-Brute-Force-Simulator]()
@@ -166,6 +162,7 @@ NSG Inbound Malicious Flows Allowed |	0
    > Note: It's not a malicious malware. EICAR is a test file used to check antivirus softwares. [Read more](https://www.eicar.org/download-anti-malware-testfile)
 
  ### KQL Query Cheat Sheet 
+ > Verify simulated attack logs using KQL queries in Log Analytics Workspace
  - [Windows Security Event Log]()
  - [Linux Syslog]()
  - [Azure Active Directory]()
@@ -175,24 +172,33 @@ NSG Inbound Malicious Flows Allowed |	0
 
 ---
 
-## Incident Response  
-![NIST IR](https://github.com/Muneer44/CloudHoneynet/assets/117259069/b67747ff-89db-47f7-84e2-384758054727)  
+# Phase 4 :  Incident Response  
+![NIST IR](https://github.com/Muneer44/CloudHoneynet/assets/117259069/b2f79c25-4555-4b91-a3cb-996ab1be9957)
 
-> Incidents occured (Alerts Triggered)
-  
+- **Preparation :** Centralizing logs, crafting analytics by ingesting logs from varied systems.
+- **Detection and Analysis :** Utilizing MS Sentinel to prompt alerts and initiate investigation.
+- **Containment, Eradication, and Recovery :** Applying playbook-guided response as needed.
+- **Post-Incident Activity :** Thoroughly documenting investigation findings for future reference.
+
+---
+
+## IR Sample Playbook :
+![image](https://github.com/Muneer44/CloudHoneynet/assets/117259069/1596013b-9c43-4365-bee4-ad55df928c7f)
+![image](https://github.com/Muneer44/CloudHoneynet/assets/117259069/978593cc-ae29-4ddb-a7bd-e96957b28b86)
+![image](https://github.com/Muneer44/CloudHoneynet/assets/117259069/322ede2d-fb06-44ac-9ea4-586c38d9052c)
+
+## Triggered Alerts (Incidents) :
 ![Incidents](https://github.com/Muneer44/CloudHoneynet/assets/117259069/127bb98c-d67e-4964-94f4-f8bb79fd0c86)  
 
-> investigation the incidents
-  
+## Investigation :
 ![image](https://github.com/Muneer44/CloudHoneynet/assets/117259069/2b71eaea-9697-4801-b3fb-603e878b1305)
 ![Investigation 2](https://github.com/Muneer44/CloudHoneynet/assets/117259069/a5ae2674-b233-4a4e-b415-0cef77011861)
 
 ---
 
-## Security Enhancements
-- Limit Resources public exposure [IMG](#architecture-after-implementation-of-security-measures)
-  
-  -Disable public access
+# Phase 5 :  Security Enhancements
+- Restrict public exposure of resources [IMG](#architecture-after-implementation-of-security-measures)
+  - Disable public access
   - Create Private endpoint access
 - Implement secure NSG configuration
   - Delete wide open all traffic NSG entry
@@ -200,10 +206,32 @@ NSG Inbound Malicious Flows Allowed |	0
 - Deploy NSG on subnet
 - Fulfill *NIST 800-53 R5 - Boundary Protection*
 
+  ![Final_SC-7](https://github.com/Muneer44/CloudHoneynet/assets/117259069/fa963e5e-a62b-4ca1-b839-731a4592cb63)
+
+  ## MiTRE Threat Vector Analysis :
+   ![MiTRE](https://github.com/Muneer44/CloudHoneynet/assets/117259069/56f3f90f-5228-47ae-97e1-434e6df46cdf)
+
+  ## Virtual network Topology :
+   ![Vnet Topology](https://github.com/Muneer44/CloudHoneynet/assets/117259069/a8e8a748-fbfa-4076-9738-865ec8d5614f)
+
 ---
 
-
 </details>
+
+### ↑ Toggle for Environment Setup, KQL, SIEM, NIST-IR and other details 
+
+---
+
+# Conclusion
+
+The **CloudHoneynet project** demonstrated the practical application of cybersecurity techniques. By constructing an Azure-based environment emulating vulnerable systems, I engaged with real malicious traffic, enhancing my understanding of vulnerabilities, threats and incident response. By actively engaging with tools like **Azure Sentinel**, crafting **Kusto Query Language** queries, and following **NIST** guidelines, I not only enhanced my skills but also gained a profound understanding of practical security measures. 
+I continue to strive to educate myself further each day, and this is just one of the many practical projects I've worked on. You can view my portfolio [here](https://github.com/Muneer44)
+
+
+
+
+
+
 
 
 
