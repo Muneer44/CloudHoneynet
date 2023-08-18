@@ -16,7 +16,7 @@ In this project, I designed and implemented an Azure Cloud Honeynet environment 
   
 - <ins>**Threat Mapping with Workbooks:**</ins> Using Azure Sentinel's workbooks, I transformed threat data into maps that outlines the origin of attacks. This provides a comprehensive overview of the threat landscape.
 
-- <ins>**Incident Response Simulation:**</ins> Simulated incident response on triggered alerts by analyzing the collected data, identifying attack vectors, and applying appropriate mitigation strategies by developing a sample Playbook based on *NIST 800-61 - Incident Response* guidelines.
+- <ins>**Incident Response Simulation:**</ins> Simulated incident response on triggered alerts by analyzing the collected data, identifying attack vectors, and applying appropriate mitigation strategies by developing a sample Playbook based around *NIST 800-61 - Incident Response* guidelines.
   
 - <ins>**Baseline and Remediation Metric Comparison:**</ins> Observed the environment for 24 hours in its vulnerable state, capturing essential security metrics as a baseline for comparison against the 24-hour metrics of the environment after implementing remediation measures.
     
@@ -24,7 +24,7 @@ In this project, I designed and implemented an Azure Cloud Honeynet environment 
 
 --- 
 
-# Initial Architecture Before Implementing Security Measures
+# Architecture Before Implementing Security Measures
 
 <img src="https://github.com/Muneer44/CloudHoneynet/assets/117259069/6ece485f-2c8a-4cb5-8c62-346fb71dacff" alt = "Initial Architecture diagram" width="480" height="465">  
 
@@ -61,7 +61,7 @@ These maps were crafted by ingesting IP Geolocation databases into Sentinel's wa
 
 ---
 
-# Metric Comparison: Pre and Post Security Enhancements
+# Metric Comparison of Incidents: 
 
 ## Pre-Enhancement :
 
@@ -89,9 +89,10 @@ NSG Inbound Malicious Flows Allowed |	0
 ---  
 <details>
 <summary><h1>🌟 Comprehensive Walkthrough</h1> </summary>
-
-## Azure Ecosystem Utilized:
-
+ 
+<details>
+<summary><h1>Azure Components Utilized: </h1></summary>
+  
 - Virtual Machines (2x Windows, 1x Linux)
 - Azure Network Security Group (NSG)
 - Azure Virtual Network (VNet)
@@ -105,13 +106,15 @@ NSG Inbound Malicious Flows Allowed |	0
 - NIST SP 800-53 Revision 5 for Security Controls
 
 ---  
+
+</details>
+
 <details>
 <summary><h1>Phase 1 : Initial Setup </h1></summary>
   
-# Phase 1 : Initial Setup 
 - Create Windows VM
-  - Instal SQL server and SQL Server Management Studio
-  - Enable logs from SQL Server to be ingested to Win Event Viewer - [[Reference](https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/write-sql-server-audit-events-to-the-security-log?view=sql-server-ver16)]
+  - Install SQL server and SQL Server Management Studio
+  - Enable logs from SQL Server to be ingested to Windows' Event Viewer - [[Reference](https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/write-sql-server-audit-events-to-the-security-log?view=sql-server-ver16)]
 - Create Linux VM
 - Create Attacker Windows VM
 - Create OPEN (insecure) Network Security Group (NSG) entries
@@ -125,8 +128,7 @@ NSG Inbound Malicious Flows Allowed |	0
 
 <details>
 <summary><h1>Phase 2 : Setup Logging and Monitoring</h1></summary>
-  
-# Phase 2 : Setup Logging and Monitoring 
+   
 ## Log Collection 
 - Create Storage account
 - Create Log Analytics Workspace (LAW)
@@ -166,7 +168,6 @@ NSG Inbound Malicious Flows Allowed |	0
 <details>
 <summary><h1>Phase 3 : Simulate Attacks and Examine Logs</h1></summary> 
   
-# Phase 3 : Simulate Attacks and Examine Logs
  ### Powershell Scripts
  - [AAD_Brute_Force_Simulator]()
  - [SQL-Brute-Force-Simulator]()
@@ -188,8 +189,7 @@ NSG Inbound Malicious Flows Allowed |	0
 
 <details>
 <summary><h1>Phase 4 :  Incident Response</h1></summary> 
-
-# Phase 4 :  Incident Response  
+ 
 ![NIST IR](https://github.com/Muneer44/CloudHoneynet/assets/117259069/b2f79c25-4555-4b91-a3cb-996ab1be9957)
 
 - **Preparation :** Centralizing logs, crafting analytics by ingesting logs from varied systems.
@@ -218,8 +218,7 @@ NSG Inbound Malicious Flows Allowed |	0
 <details>
 <summary><h1>Phase 5 :  Security Enhancements</h1></summary> 
 
-# Phase 5 :  Security Enhancements
-- Restrict public exposure of resources [IMG](#architecture-after-implementation-of-security-measures)
+- Restrict public exposure of resources - [[IMG](#architecture-after-implementation-of-security-measures)]
   - Disable public access
   - Create Private endpoint access
 - Implement secure NSG configuration
