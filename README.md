@@ -1,5 +1,5 @@
 # CloudHoneynet
-In this project, I designed and implemented an Azure Cloud Honeynet environment that emulates real vulnerable systems to **capture**, **analyze** and **respond** to live malicious traffic. The goal was to enhance my understanding of cybersecurity threats and incident response through practical, real-world experience.
+In this project, I designed and implemented an Azure Cloud Honeynet environment that emulates real vulnerable systems to **capture**, **analyze** and **respond** to live malicious traffic. The goal was to enhance my understanding of cybersecurity threats and incident response through practical, real-world experience. Additionally, I conducted a metric analysis comparing the outcomes before and after implementing security measures for an accurate evaluation of the effectiveness of the employed security enhancements.
 
 ---
 
@@ -105,7 +105,9 @@ NSG Inbound Malicious Flows Allowed |	0
 - NIST SP 800-53 Revision 5 for Security Controls
 
 ---  
-
+<details>
+<summary><h1>Phase 1 : Initial Setup </h1></summary>
+  
 # Phase 1 : Initial Setup 
 - Create Windows VM
   - Instal SQL server and SQL Server Management Studio
@@ -119,6 +121,11 @@ NSG Inbound Malicious Flows Allowed |	0
 
 ---
 
+</details>
+
+<details>
+<summary><h1>Phase 2 : Setup Logging and Monitoring</h1></summary>
+  
 # Phase 2 : Setup Logging and Monitoring 
 ## Log Collection 
 - Create Storage account
@@ -153,7 +160,12 @@ NSG Inbound Malicious Flows Allowed |	0
   ![Analytics](https://github.com/Muneer44/CloudHoneynet/assets/117259069/dc6c03b6-f93e-4b52-a41f-be8cab6dbf7b)
 
 ---
- 
+
+</details>
+
+<details>
+<summary><h1>Phase 3 : Simulate Attacks and Examine Logs</h1></summary> 
+  
 # Phase 3 : Simulate Attacks and Examine Logs
  ### Powershell Scripts
  - [AAD_Brute_Force_Simulator]()
@@ -171,6 +183,11 @@ NSG Inbound Malicious Flows Allowed |	0
  - [Network Security Groups]()
 
 ---
+
+</details>
+
+<details>
+<summary><h1>Phase 4 :  Incident Response</h1></summary> 
 
 # Phase 4 :  Incident Response  
 ![NIST IR](https://github.com/Muneer44/CloudHoneynet/assets/117259069/b2f79c25-4555-4b91-a3cb-996ab1be9957)
@@ -196,6 +213,11 @@ NSG Inbound Malicious Flows Allowed |	0
 
 ---
 
+</details>
+
+<details>
+<summary><h1>Phase 5 :  Security Enhancements</h1></summary> 
+
 # Phase 5 :  Security Enhancements
 - Restrict public exposure of resources [IMG](#architecture-after-implementation-of-security-measures)
   - Disable public access
@@ -218,7 +240,9 @@ NSG Inbound Malicious Flows Allowed |	0
 
 </details>
 
-### ↑ Toggle for Environment Setup, KQL, SIEM, NIST-IR and other details 
+</details>
+
+### ↑ Toggle for Environment Setup, SIEM Configuration, KQL Queries, NIST-IR Utilization, and other details 
 
 ---
 
