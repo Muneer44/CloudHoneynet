@@ -1,5 +1,5 @@
 # CloudHoneynet
-In this project, I designed and implemented an Azure Cloud Honeynet environment that emulates real vulnerable systems to **capture**, **analyze** and **respond** to live malicious traffic. The goal was to enhance my understanding of cybersecurity threats and incident response through practical, real-world experience. Additionally, I conducted a metric analysis comparing the outcomes before and after implementing security measures for an accurate evaluation of the effectiveness of the employed security enhancements.
+In this project, I designed and implemented an Azure Cloud Honeynet environment that emulates real vulnerable systems to **capture**, **analyze** and **respond** to live malicious traffic. The goal was to enhance my understanding of cybersecurity threats and incident response through practical, real-world experience. Additionally, I conducted a metric comparison of the outcomes before and after implementing security measures for an accurate evaluation of the effectiveness of the employed security enhancements.
 
 ---
 
@@ -10,17 +10,17 @@ In this project, I designed and implemented an Azure Cloud Honeynet environment 
 # Methodology 
 - <ins>**Azure Infrastructure Setup:**</ins> Deployed an Azure environment consisting of virtual machines, SQL Server, Azure Active Directory, storage accounts, Key Vault, and more.
   
-- <ins>**SIEM Integration with Azure Sentinel:**</ins> Leveraged Sentinel (SIEM) to monitor and analyze the captured data from various sources and respond to the incidents, all within a central hub.
+- <ins>**SIEM Integration with Azure Sentinel:**</ins> Utilized Sentinel (SIEM) to monitor and analyze the captured data from various sources and respond to the incidents, all within a central hub.
   
 - <ins>**Analytic Rules and Alerts:**</ins> I crafted custom analytic rules using *Kusto Query Language* to detect and trigger specific attack patterns like brute force attempts, manipulation of firewall, identification of malicious files and other potential threats.
   
-- <ins>**Threat Mapping with Workbooks:**</ins> Using Azure Sentinel's workbooks, I transformed threat data into maps that outlines the origin of attacks. This provides a comprehensive overview of the threat landscape.
+- <ins>**Threat Mapping with Workbooks:**</ins> Using Azure Sentinel's workbooks, I transformed threat data into maps that outline the origin of attacks. This provides a comprehensive overview of the threat landscape.
 
-- <ins>**Incident Response Simulation:**</ins> Simulated incident response on triggered alerts by analyzing the collected data, identifying attack vectors, and applying appropriate mitigation strategies by developing a sample Playbook based around *NIST 800-61 - Incident Response* guidelines.
+- <ins>**Incident Response Simulation:**</ins> Simulated incident response for triggered alerts by analyzing the collected data, identifying attack vectors, and applying appropriate mitigation strategies by developing a sample Playbook based around ***NIST 800-61 - Incident Response*** guidelines.
   
-- <ins>**Baseline and Remediation Metric Comparison:**</ins> Observed the environment for 24 hours in its vulnerable state, capturing essential security metrics as a baseline for comparison against the 24-hour metrics of the environment after implementing remediation measures.
+- <ins>**Baseline and Remediation Metric Comparison:**</ins> Observed the environment in its vulnerable state for 24 hours, capturing essential security metrics as a baseline for comparison against the 24-hour metrics of the environment after implementing remediation measures.
     
-- <ins>**Regulatory Compliance:**</ins> Ensured regulatory compliance by enabling *NIST 800-53* and *PCI DSS* security policies alongside hardening the environment's security posture.
+- <ins>**Regulatory Compliance:**</ins> Ensured regulatory compliance by enabling ***NIST 800-53*** security policy alongside hardening the environment's security posture.
 
 --- 
 
@@ -29,7 +29,7 @@ In this project, I designed and implemented an Azure Cloud Honeynet environment 
 <img src="https://github.com/Muneer44/CloudHoneynet/assets/117259069/6ece485f-2c8a-4cb5-8c62-346fb71dacff" alt = "Initial Architecture diagram" width="480" height="465">  
 
   
-> Initially, resources were intentionally set up for public exposure to attract potential threat actors and stimulate malicious activity. This deployment involved VMs with open Network Security Groups (NSGs) and disabled built-in firewalls, allowing unrestricted access from any source.  In addition, resources like key vaults and storage accounts were also publicly accessible, lacking appropriate restrictions or private endpoint security controls.
+> Initially, resources were intentionally set up for public exposure to attract potential threat actors and stimulate malicious activity. This deployment involved VMs with open Network Security Groups (NSGs) and disabled built-in firewalls, which allowed unrestricted access from any source.  In addition, resources like key vaults and storage accounts were also made publicly accessible, lacking appropriate restrictions or private endpoint security controls.
 
 ---  
 
@@ -37,7 +37,7 @@ In this project, I designed and implemented an Azure Cloud Honeynet environment 
 
 <img src="https://github.com/Muneer44/CloudHoneynet/assets/117259069/76572122-d284-4c29-af8c-7fd4ab053cda" alt = "Initial Architecture diagram" width="510" height="565">
 
-> Here, I enhanced security by implementing strict Network Security Group (NSG) configurations, allowing only authorized traffic from trusted IP address. I optimized built-in firewalls on virtual machines and replaced public endpoints with Private Endpoints for sensitive resources like Key Vaults and Storage Accounts, ensuring limited access within the virtual network.  
+> Here, I enhanced security by implementing strict Network Security Group (NSG) configurations, allowing only authorized traffic from trusted IP addresses. I optimized the built-in firewalls on virtual machines and replaced public endpoints with Private Endpoints for sensitive resources like Key Vaults and Storage Accounts, ensuring limited access within the virtual network.  
 > Additionally, I implemented *'SC-7: Boundary Protection controls from NIST 800-53'* to further enhance protection against other threats and adhere to regulatory compliance.
 
 ---  
@@ -83,9 +83,9 @@ SecurityAlert (Microsoft Defender for Cloud) |	0
 SecurityIncident (Sentinel Incidents) |	0
 NSG Inbound Malicious Flows Allowed |	0
 
-- The comparison of metrics between the environment's pre and post security enhancements over a 24-hour period demonstrates the effectiveness of the implemented security controls, resulting in zero incidents Post Security Enhancement.
-- The Security Events (783) and Syslog (23) counts are identified as **false positives** originating from internal systems like (NT-Authority).
-- Note: The absence of active users on these systems reduces threat visibility. Active users could probably attract more threats.
+- The comparison of metrics between the environment's pre- and post-security enhancements over a 24-hour period demonstrates the effectiveness of the implemented security controls, resulting in zero incidents after the  Security Enhancement.
+- The Security Events (783) and Syslog (23) counts are identified as **false positives** originating from internal systems like NT-Authority.
+- Note: The absence of active users on these systems reduces threat visibility. The presence of active users could potentially attract more threats.
 ---  
 <details>
 <summary><h1>🌟 Comprehensive Walkthrough</h1> </summary>
@@ -169,19 +169,22 @@ NSG Inbound Malicious Flows Allowed |	0
 <summary><h1>Phase 3 : Simulate Attacks and Examine Logs</h1></summary> 
   
  ### Powershell Scripts
- - [AAD_Brute_Force_Simulator]()
- - [SQL-Brute-Force-Simulator]()
- - [EICAR-Malware-Generator]()
+ - [AAD_Brute_Force_Simulator](https://github.com/Muneer44/CloudHoneynet/blob/main/Powershell%20Scripts/AAD_Brute_Force_Simulator.ps1)
+ - [SQL-Brute-Force-Simulator](https://github.com/Muneer44/CloudHoneynet/blob/main/Powershell%20Scripts/SQL-Brute-Force-Simulator.ps1)
+ - [EICAR-Malware-Generator](https://github.com/Muneer44/CloudHoneynet/blob/main/Powershell%20Scripts/EICAR-Malware-Generator.ps1)
    > Note: It's not a malicious malware. EICAR is a test file used to check antivirus softwares. [Read more](https://www.eicar.org/download-anti-malware-testfile)
 
  ### KQL Query Cheat Sheet 
  > Verify simulated attack logs using KQL queries in Log Analytics Workspace
- - [Windows Security Event Log]()
- - [Linux Syslog]()
- - [Azure Active Directory]()
- - [Azure Storage Account]()
- - [Azure Key Vault]()
- - [Network Security Groups]()
+ - [Windows Security Event Log](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Network%20Security%20Groups.md)
+ - [Linux Syslog](https://github.com/Muneer44/CloudHoneynet/edit/main/README.md)
+ - [Azure Active Directory](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Azure%20Active%20Directory.md)
+ - [Azure Storage Account](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Azure%20Key%20Vault%20Queries.md)
+ - [Azure Key Vault](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Azure%20Key%20Vault%20Queries.md)
+ - [Network Security Groups](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Network%20Security%20Groups.md)
+
+
+> Note: AI and the internet were utilized to a moderate extent for the creation of above scripts and queries.
 
 ---
 
@@ -241,7 +244,7 @@ NSG Inbound Malicious Flows Allowed |	0
 
 </details>
 
-### ↑ Toggle for Environment Setup, SIEM Configuration, KQL Queries, NIST-IR Utilization, and other details 
+### ↑ Toggle for Environment Setup, SIEM Configuration, KQL Queries, NIST-IR Utilization, and Other Details 
 
 ---
 
