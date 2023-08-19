@@ -179,7 +179,7 @@ NSG Inbound Malicious Flows Allowed |	0
  - [Windows Security Event Log](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Network%20Security%20Groups.md)
  - [Linux Syslog](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Linux%20Syslog.md)
  - [Azure Active Directory](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Azure%20Active%20Directory.md)
- - [Azure Storage Account](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Azure%20Key%20Vault%20Queries.md)
+ - [Azure Storage Account](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Azure%20Storage%20Account.md)
  - [Azure Key Vault](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Azure%20Key%20Vault%20Queries.md)
  - [Network Security Groups](https://github.com/Muneer44/CloudHoneynet/blob/main/KQL%20Query%20Cheat%20Sheet/Network%20Security%20Groups.md)
 
