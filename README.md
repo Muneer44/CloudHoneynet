@@ -87,8 +87,7 @@ NSG Inbound Malicious Flows Allowed |	0
 - The Security Events (783) and Syslog (23) counts are identified as **false positives** originating from internal systems like NT-Authority.
 - Note: The absence of active users on these systems reduces threat visibility. The presence of active users could potentially attract more threats.
 ---  
-<details>
-<summary><h1>🌟 Comprehensive Walkthrough</h1> </summary>
+## <h1>🌟 Comprehensive Walkthrough</h1> ##
  
 <details>
 <summary><h1>Azure Components Utilized: </h1></summary>
